@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kevin's avVIK</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 30px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        input, textarea, select, button {
+            font-size: 16px;
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .avvik-list {
+            margin-top: 20px;
+            text-align: left;
+            display: inline-block;
+            max-width: 500px;
+            width: 100%;
+        }
+        .avvik-item {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Kevins avVIK(er)</h1>
+    <form id="avvikForm">
+        <input type="text" id="name" placeholder="Navn" required>
+        <textarea id="description" placeholder="Hva skjedde?" required></textarea>
+        <select id="category">
+            <option value="Tafsing">Tafsing</option>
+            <option value="Sutring">Grining</option>
+            <option value="Hærverk">Ødela noe</option>
+            <option value="Annet">Annet</option>
+        </select>
+        <button type="submit">Registrer Avvik</button>
+    </form>
+
+    <div class="avvik-list" id="avvikList">
+        <h2>Registrerte avvik:</h2>
+    </div>
+
+    <script>
+        const avvikForm = document.getElementById('avvikForm');
+        const avvikList = document.getElementById('avvikList');
+
+        avvikForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const description = document.getElementById('description').value;
+            const category = document.getElementById('category').value;
+            const date = new Date().toLocaleDateString();
+
+            // Create avvik item
+            const avvikItem = document.createElement('div');
+            avvikItem.className = 'avvik-item';
+            avvikItem.innerHTML = `
+                <strong>Name:</strong> ${name}<br>
+                <strong>Description:</strong> ${description}<br>
+                <strong>Category:</strong> ${category}<br>
+                <strong>Date:</strong> ${date}
+            `;
+
+            // Add item to the list
+            avvikList.appendChild(avvikItem);
+
+            // Clear form
+            avvikForm.reset();
+        });
+    </script>
+</body>
+</html>
